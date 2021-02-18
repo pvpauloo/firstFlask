@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+    {% block content %}
+<br/>
+<div class="container marketing">
+<div class="col-md-12 col-md-offset-8">
+    <h2>LIST OF USERS</h2>
+    <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">NickName</th>
+      <th scope="col">Name</th>
+      <th scope="col">e-mail</th>
+    </tr>
+  </thead>
+    <tbody>
+    {% for i in user %}
+        <tr>
+          <th scope="row">{{i[0]}}</th>
+          <td>{{i[1]}}</td>
+          <td>{{i[3]}}</td>
+          <td>{{i[4]}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+<br/>
+    {% endblock %}

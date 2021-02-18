@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for
 from flask_login import login_user, logout_user
 from app import app, db, lm
-
+from json import dumps, loads
 from app.models.tables import User
 from app.models.forms import LoginForm, Register
 
@@ -56,6 +56,12 @@ def register():
 
     return render_template('register.html', form=form)
 
+
+@app.route("/users", methods=["GET"])
+def users():
+    engine = db.engine
+    results = engine.execute('select * from users')
+    return render_template('users.html', user=results)
 
 
 @app.route("/crud/<info>")

@@ -35,7 +35,7 @@ class User(db.Model):
 
 
     def __repr__(self):
-        return "<User %r>" % self.username
+        return self.username
 
 
 class Post(db.Model):
