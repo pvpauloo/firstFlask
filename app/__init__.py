@@ -13,14 +13,14 @@ def main():
 
 
 app = Flask(__name__)
-app.config.from_object('config')
+app.config.from_object("config")
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-cors = CORS(app, resource={r"/*":{"origins": "*"}})
+cors = CORS(app, resource={r"/*": {"origins": "*"}})
 
 manager = Manager(app)
-manager.add_command('db', MigrateCommand)
+manager.add_command("db", MigrateCommand)
 lm = LoginManager()
 lm.init_app(app)
 
