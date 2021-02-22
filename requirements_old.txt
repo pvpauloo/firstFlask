@@ -50,5 +50,3 @@ Werkzeug==1.0.1
 wrapt==1.12.1
 WTForms==2.3.3
 zipp==3.4.0
-flask-pwa
-Flask-SSLify

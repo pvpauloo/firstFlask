@@ -12,7 +12,8 @@ def main():
     app.run(host="0.0.0.0", port=port)
 
 
-app = Flask(__name__)
+app = Flask(__name__,
+            instance_relative_config=True)
 app.config.from_object("config")
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -23,6 +24,10 @@ manager = Manager(app)
 manager.add_command("db", MigrateCommand)
 lm = LoginManager()
 lm.init_app(app)
+
+from flask_sslify import SSLify
+if 'DYNO' in os.environ:
+    sslfy = SSLify(app) 
 
 from app.models import tables, forms
 from app.controllers import defalt

@@ -6,6 +6,19 @@ from app.models.tables import User
 from app.models.forms import LoginForm, Register
 
 
+@app.route('/sw.js')
+def sw():
+    return app.send_static_file('sw.js')
+
+@app.route('/manifest.json')
+def manifest():
+    return app.send_static_file('manifest.json')
+
+@app.route('/app/static/app.js')
+def app_js():
+    return app.send_static_file('/js/app.js')
+
+
 @lm.user_loader
 def load_user(id):
     return User.query.filter_by(id=id).first()
