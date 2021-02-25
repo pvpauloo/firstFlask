@@ -73,7 +73,9 @@ def register():
 @app.route("/users", methods=["GET"])
 def users():
     engine = db.engine
-    results = engine.execute('select * from users')
+    
+    results = User.query.all()
+    print(results)
     return render_template('users.html', user=results)
 
 
