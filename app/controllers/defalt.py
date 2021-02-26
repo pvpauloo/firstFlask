@@ -53,7 +53,7 @@ def login():
         else:
             flash("Invalid login")
 
-    return render_template('lab.html', form=form)
+    return render_template('login.html', form=form)
 
 
 @app.route("/logout")
@@ -83,11 +83,12 @@ def register():
 
 @app.route("/users", methods=["GET"])
 def users():
+    form = LoginForm()
     engine = db.engine
     
     results = User.query.all()
     print(results)
-    return render_template('users.html', user=results)
+    return render_template('users.html', user=results, form=form)
 
 
 @app.route("/crud/<info>")
