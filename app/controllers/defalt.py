@@ -25,9 +25,20 @@ def load_user(id):
 
 
 @app.route("/index")
-@app.route("/")
+@app.route("/", methods=["POST", "GET"])
 def index():
-    return render_template('index.html')
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user and user.password == form.password.data:
+            login_user(user)
+            return redirect(url_for("index"))
+            flash("Logged in.")
+        else:
+            flash("Invalid login")
+
+    return render_template('index.html', form=form)
+    
 
 
 @app.route("/login", methods=["POST", "GET"])
@@ -42,7 +53,7 @@ def login():
         else:
             flash("Invalid login")
 
-    return render_template('login.html', form=form)
+    return render_template('lab.html', form=form)
 
 
 @app.route("/logout")

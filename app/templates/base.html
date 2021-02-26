@@ -75,7 +75,9 @@
                 <li><a class="dropdown-item" type="button" href="{{url_for('logout')}}">Logout</a></li>
               {% else %}
                 <li><a class="dropdown-item" type="button" href="{{url_for('register')}}">Register</a></li>
-                <li><a class="dropdown-item" type="button" href="{{url_for('login')}}">Login</a></li>
+                <!-- <li><a class="dropdown-item" type="button" href="{{url_for('login')}}">Login1</a></li> -->
+                <li><a class="dropdown-item" type="button" data-toggle="modal" data-target="#exampleModalLong">Login</a></li>
+                <!-- <li><button type="button" class="btn  btn-primary" data-toggle="modal" data-target="#exampleModalLong">Login2</button></li> -->
               {% endif %}
             </ul>
           </div>
@@ -83,8 +85,9 @@
      
       </div>
     </div>
-  </nav>
+  </nav>  
 </header>
+
 <main>
 
   <!-- Marketing messaging and featurettes
@@ -107,101 +110,108 @@
 
   {% block content %}
   {% endblock %}
+  <div class="col-md-12 col-md-offset-8">
+    <div class="card-body">
+        <div id="exampleModalLong" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" method="POST">
+                            {{ form.csrf_token }}
+                            <div class="form-group">
+                                <label>Username</label>
+                                {{ form.username(class="form-control", placeholder="your user") }}
+                                {% if form.errors.username %}
+                                <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                        {% for e in form.errors.username %}
+                                        <li>{{ e }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group">
+                                <label>Password</label>
+                                {{ form.password(class="form-control", placeholder="your password") }}
+                                {% if form.errors.password %}
+                                <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                        {% for e in form.errors.password %}
+                                        <li>{{ e }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    {{ form.remember_me }} Remember me
+                                </label>
+                            </div>
+                            <button type="submit" class="btn-default">Submit</button>
+                            <a class="btn" href="{{url_for('register')}}">Register</a>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn  btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn  btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <button type="button" class="btn  btn-primary" data-toggle="modal" data-target="#exampleModalLong">Login2</button> -->
+    </div>
+</div>
 <br/>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container bottom_border">
     <div class="row">
-    <div class=" col-sm-4 col-md col-sm-4  col-12 col">
+    <div class=" col-sm-4 col-md col-sm-4  col-9 col">
     <h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
     <!--headin5_amrc-->
-    <p class="mb10">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-    <p><i class="fa fa-location-arrow"></i> 9878/25 sec 9 rohini 35 </p>
-    <p><i class="fa fa-phone"></i>  +91-9999878398  </p>
-    <p><i class="fa fa fa-envelope"></i> info@example.com  </p>
+    <p><i class="fa fa-location-arrow"></i> Carapicuíba, SP </p>
+    <p><i class="fa fa-phone"></i>  Phone: +55 (11) 9 5454-3058  </p>
+    <p><i class="fa fa fa-envelope"></i> Mail: pvpauloo@gmail.com  </p>
     
-    
-    </div>
-    
-    
-    <div class=" col-sm-4 col-md  col-6 col">
-    <h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
-    <!--headin5_amrc-->
-    <ul class="footer_ul_amrc">
-    <li><a href="http://webenlance.com">Image Rectoucing</a></li>
-    <li><a href="http://webenlance.com">Clipping Path</a></li>
-    <li><a href="http://webenlance.com">Hollow Man Montage</a></li>
-    <li><a href="http://webenlance.com">Ebay & Amazon</a></li>
-    <li><a href="http://webenlance.com">Hair Masking/Clipping</a></li>
-    <li><a href="http://webenlance.com">Image Cropping</a></li>
-    </ul>
-    <!--footer_ul_amrc ends here-->
-    </div>
-    
-    
-    <div class=" col-sm-4 col-md  col-6 col">
-    <h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
-    <!--headin5_amrc-->
-    <ul class="footer_ul_amrc">
-    <li><a href="http://webenlance.com">Remove Background</a></li>
-    <li><a href="http://webenlance.com">Shadows & Mirror Reflection</a></li>
-    <li><a href="http://webenlance.com">Logo Design</a></li>
-    <li><a href="http://webenlance.com">Vectorization</a></li>
-    <li><a href="http://webenlance.com">Hair Masking/Clipping</a></li>
-    <li><a href="http://webenlance.com">Image Cropping</a></li>
-    </ul>
-    <!--footer_ul_amrc ends here-->
-    </div>
-    
-    
-    <div class=" col-sm-4 col-md  col-12 col">
-    <h5 class="headin5_amrc col_white_amrc pt2">Follow us</h5>
-    <!--headin5_amrc ends here-->
-    
-    <ul class="footer_ul2_amrc">
-    <li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
-    <li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
-    <li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
-    </ul>
-    <!--footer_ul2_amrc ends here-->
-    </div>
-    </div>
     </div>
     
     
     <div class="container">
-    <ul class="foote_bottom_ul_amrc">
-    <li><a href="http://webenlance.com">Home</a></li>
-    <li><a href="http://webenlance.com">About</a></li>
-    <li><a href="http://webenlance.com">Services</a></li>
-    <li><a href="http://webenlance.com">Pricing</a></li>
-    <li><a href="http://webenlance.com">Blog</a></li>
-    <li><a href="http://webenlance.com">Contact</a></li>
-    </ul>
-    <!--foote_bottom_ul_amrc ends here-->
-    <p class="text-center">Copyright @2017 | Designed With by <a href="#">Your Company Name</a></p>
-    
-    <ul class="social_footer_ul">
-    <li><a href="http://webenlance.com"><i class="fab fa-facebook-f"></i></a>
-    <a href="http://webenlance.com"><i class="fab fa-twitter"></i></a>
-    <a href="http://webenlance.com"><i class="fab fa-linkedin"></i></a>
-    <a href="http://webenlance.com"><i class="fab fa-instagram"></i></a></li>
-    </ul>
+      <p class="text-center">Copyright @2017 | Designed With by <a href="#">Your Company Name</a></p>
     <!--social_footer_ul ends here-->
     </div>
     </footer>
 </main>
 <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
 <script>
   $(document).ready(function() {
     $('.mydatatable').DataTable();
       } );
 </script>
+<script src="{{ url_for('static', filename='assets/js/plugins/bootstrap.min.js')}}"> </script>
+<script>
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var recipient = button.data('whatever')
+        var modal = $(this)
+        modal.find('.modal-title').text('New message to ' + recipient)
+        modal.find('.modal-body input').val(recipient)
+    })
+</script>
 {% block script %}
 
   {% endblock %}
+
   </body>
 </html>
