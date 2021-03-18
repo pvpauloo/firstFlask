@@ -52,3 +52,6 @@ WTForms==2.3.3
 zipp==3.4.0
 flask-pwa
 Flask-SSLify
+python-dotenv
+flask_sslify
+psycopg2
